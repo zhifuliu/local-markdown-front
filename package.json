@@ -20,7 +20,6 @@
         "karma-requireglobal-preprocessor": "0.0.0",
         "requirejs": "^2.1.11",
         "q": "1.0.1",
-
         "deeply": "~0.1.0",
         "chalk": "~0.4.0"
     }
