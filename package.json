@@ -9,6 +9,7 @@
     "gulp-clean": "~0.2.4",
     "gulp-concat": "~2.2.0",
     "gulp-html-replace": "~1.0.0",
+    "gulp-md5": "^0.1.2",
     "gulp-replace": "~0.2.0",
     "gulp-requirejs-bundler": "^0.1.1",
     "gulp-sass": "^2.3.2",
