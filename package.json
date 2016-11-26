@@ -10,6 +10,7 @@
     "gulp-concat": "~2.2.0",
     "gulp-html-replace": "~1.0.0",
     "gulp-md5": "^0.1.2",
+    "gulp-minify-css": "^1.2.4",
     "gulp-replace": "~0.2.0",
     "gulp-requirejs-bundler": "^0.1.1",
     "gulp-rev": "^7.1.2",
