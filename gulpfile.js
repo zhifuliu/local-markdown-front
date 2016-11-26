@@ -25,7 +25,7 @@ gulp.task('test', ['ts'], function() {
 });
 
 // WebServer
-gulp.task('web-server', ['auto-ts'], function() {
+gulp.task('webserver', ['auto-ts'], function() {
     gulp.src('./src')
         .pipe(webServer({
             host: '0.0.0.0',
@@ -44,7 +44,7 @@ gulp.task('auto-ts', ['ts'], function() {
         gulp.src(['**/*.ts'])
             .pipe(typescript({
                 module: 'amd',
-                sourcemap: true,
+                sourcemap: false,
                 outDir: './',
                 target: 'es5'
             }))
@@ -78,7 +78,7 @@ gulp.task('ts', function() {
     return gulp.src(['**/*.ts'])
         .pipe(typescript({
             module: 'amd',
-            sourcemap: true,
+            sourcemap: false,
             outDir: './',
             target: 'es5'
         }))
