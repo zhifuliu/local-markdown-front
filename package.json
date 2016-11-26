@@ -26,6 +26,7 @@
     "karma-jasmine": "^0.1.5",
     "karma-requireglobal-preprocessor": "0.0.0",
     "karma-requirejs": "^0.2.1",
+    "path-exists": "^3.0.0",
     "q": "1.0.1",
     "requirejs": "^2.1.11"
   }
