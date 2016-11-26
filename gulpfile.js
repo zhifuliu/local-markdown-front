@@ -106,7 +106,18 @@ gulp.task('css', function() {
     return es.concat(combinedCss, fontFiles)
         .pipe(gulp.dest('./dist/'));
 });
-
+// gulp.task('auto-sass', ['sass'], function() {
+//     gulp.watch('./src/css/*.scss', ['sass']);
+// });
+// gulp.task('sass', function() {
+//     return gulp.src('./src/css/*.scss')
+//         .pipe(
+//             sass({
+//
+//             }).on('error', sass.logError)
+//         )
+//         .pipe(gulp.dest('./src/css'));
+// });
 // Copies index.html, replacing <script> and <link> tags to reference production URLs
 gulp.task('html', function() {
     return gulp.src('./src/index.html')
