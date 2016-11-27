@@ -12,16 +12,26 @@ class Services {
             data: JSON.stringify(qd)
         }));
     }
+    getJsonFile(url): Q.Promise<any> {
+        return Q($.ajax({
+            url: url,
+            dataType: 'json'
+        }));
+    }
     getJsonFileRefresh(url): Q.Promise<any> {
         return Q($.ajax({
             url: url + '?t=' + (new Date().getTime()),
             dataType: 'json'
         }));
     }
-    getJsonFile(url): Q.Promise<any> {
+    getFile(url): Q.Promise<any> {
         return Q($.ajax({
-            url: url,
-            dataType: 'json'
+            url: url
+        }));
+    }
+    getFileRefresh(url): Q.Promise<any> {
+        return Q($.ajax({
+            url: url + '?t=' + (new Date().getTime())
         }));
     }
 }
