@@ -77,18 +77,22 @@ gulp.task('ts', function() {
             module: 'amd',
             sourcemap: false,
             outDir: './',
-            target: 'es5'
+            target: 'es5',
+            emitError: false
         }))
         .pipe(gulp.dest('./'));
 });
 gulp.task('auto-ts', ['ts'], function() {
-    gulp.watch('**/*.ts', function() {
+    gulp.watch('**/*.ts', {
+        ignored: '.gulp-tsc-tmp*.ts'
+    }, function() {
         gulp.src(['**/*.ts'])
             .pipe(typescript({
                 module: 'amd',
                 sourcemap: false,
                 outDir: './',
-                target: 'es5'
+                target: 'es5',
+                emitError: false
             }))
             .on('error', gutil.log)
             .pipe(gulp.dest('./'));
