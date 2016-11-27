@@ -6,6 +6,7 @@ import $ = require("jquery");
 import ko = require("knockout");
 import bootstrap = require("bootstrap");
 import router = require("./router");
+import models = require('./models');
 
 ko.components.register('home-page', { require: 'components/home-page/home' });
 ko.components.register('about-page', {
@@ -48,7 +49,11 @@ ko.validation.localize({
 });
 
 class App {
+    cunstructor() {
+        console.log('cunstructor');
+    }
     public route = router.currentRoute;
+    public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
 }
 
 var app = new App();
