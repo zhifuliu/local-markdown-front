@@ -22,6 +22,17 @@ var gulp = require('gulp'),
 
 // WebServer
 gulp.task('webserver', ['auto-ts', 'auto-sass'], function() {
+    var config;
+    try {
+        config = require('./config');
+        gutil.log('load configuration file');
+    } catch(e) {
+        config = {
+            "server": "http://localhost:8888"
+        };
+        gutil.log('using default configuration: ', config);
+    }
+
     gulp.src('./src')
         .pipe(webServer({
             host: '0.0.0.0',
@@ -31,7 +42,13 @@ gulp.task('webserver', ['auto-ts', 'auto-sass'], function() {
                 port: 8001
             },
             directoryListing: true,
-            port: 1314
+            port: 1314,
+            proxies: [
+                {
+                    source: '/localmd',
+                    target: config.server
+                }
+            ]
         }));
 });
 
