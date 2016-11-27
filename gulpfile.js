@@ -17,7 +17,8 @@ var gulp = require('gulp'),
     webServer = require('gulp-webserver'),
     gutil = require('gulp-util'),
     sass = require('gulp-sass'),
-    gulpsync = require('gulp-sync')(gulp);
+    gulpsync = require('gulp-sync')(gulp),
+    cssbeautify = require('gulp-cssbeautify');
 
 // WebServer
 gulp.task('webserver', ['auto-ts', 'auto-sass'], function() {
@@ -96,6 +97,7 @@ gulp.task('sass', function() {
 
             }).on('error', sass.logError)
         )
+        .pipe(cssbeautify())
         .pipe(gulp.dest('./src/css'));
 });
 // Concatenates CSS files, rewrites relative paths to Bootstrap fonts, copies Bootstrap fonts
