@@ -127,7 +127,7 @@ gulp.task('clean', function() {
     var distContents = gulp.src('./dist/**/*', {
             read: false
         }),
-        generatedJs = gulp.src(['src/**/*.js', 'src/**/*.js.map', 'test/**/*.js', 'test/**/*.js.map', '**/.DS_Store'], {
+        generatedJs = gulp.src(['src/**/*.js', 'src/**/*.js.map', 'test/**/*.js', 'test/**/*.js.map', '**/.DS_Store', 'src/css/*.css'], {
             read: false
         })
         .pipe(es.mapSync(function(data) {
