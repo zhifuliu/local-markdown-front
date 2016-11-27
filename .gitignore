@@ -19,3 +19,5 @@ test/**/*.js.map
 !src/app/require.config.js
 !src/app/lib/*.js*
 !tset/require.config.js
+
+src/css/*.css

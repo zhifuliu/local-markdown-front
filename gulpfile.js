@@ -15,7 +15,8 @@ var gulp = require('gulp'),
     htmlreplace = require('gulp-html-replace'),
     typescript = require('gulp-tsc'),
     webServer = require('gulp-webserver'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
+    sass = require('gulp-sass');
 
 gulp.task('test', ['ts'], function() {
     new KarmaServer({
@@ -106,18 +107,18 @@ gulp.task('css', function() {
     return es.concat(combinedCss, fontFiles)
         .pipe(gulp.dest('./dist/'));
 });
-// gulp.task('auto-sass', ['sass'], function() {
-//     gulp.watch('./src/css/*.scss', ['sass']);
-// });
-// gulp.task('sass', function() {
-//     return gulp.src('./src/css/*.scss')
-//         .pipe(
-//             sass({
-//
-//             }).on('error', sass.logError)
-//         )
-//         .pipe(gulp.dest('./src/css'));
-// });
+gulp.task('auto-sass', ['sass'], function() {
+    gulp.watch('./src/css/*.scss', ['sass']);
+});
+gulp.task('sass', function() {
+    return gulp.src('./src/css/*.scss')
+        .pipe(
+            sass({
+
+            }).on('error', sass.logError)
+        )
+        .pipe(gulp.dest('./src/css'));
+});
 // Copies index.html, replacing <script> and <link> tags to reference production URLs
 gulp.task('html', function() {
     return gulp.src('./src/index.html')
