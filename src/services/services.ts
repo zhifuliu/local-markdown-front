@@ -9,6 +9,7 @@ class Services {
             url: '/api/login',
             type: 'post',
             contentType: 'application/json',
+            dataType: 'json',
             data: JSON.stringify(qd)
         }));
     }
