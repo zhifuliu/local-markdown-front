@@ -7,6 +7,7 @@ import ko = require("knockout");
 import bootstrap = require("bootstrap");
 import router = require("./router");
 import models = require('./models');
+import services = require('../services/services');
 
 ko.components.register('home-page', { require: 'components/home-page/home' });
 ko.components.register('about-page', {
@@ -49,8 +50,15 @@ ko.validation.localize({
 });
 
 class App {
-    cunstructor() {
+    constructor() {
         console.log('cunstructor');
+        services.getUserMsg()
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
     public route = router.currentRoute;
     public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
