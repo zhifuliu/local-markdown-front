@@ -39,7 +39,7 @@ class Services {
             dataType: 'json'
         }));
     }
-    getProjectData(qd: any): Q.Promise<any> {
+    getProjectData(qd: any): Q.Promise<models.projectData> {
         return Q($.ajax({
             url: prefix + 'api/getProjectData',
             type: 'post',
