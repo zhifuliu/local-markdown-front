@@ -76,11 +76,13 @@ class App {
             console.log("currentUser: " + JSON.stringify(val));
         });
         setInterval(() => {
-            var notScanPages = ['login', 'register'];
+            var notScanPages = ['login-page', 'register'];
+            // console.log(this.route()['page']);
             if (notScanPages.indexOf(this.route()['page']) == -1) {
                 services.getUserMsg()
                     .catch(error => {
                         console.log(error);
+                        document.title = '登录';
                         hasher.setHash('login');
                     });
             }
@@ -88,6 +90,27 @@ class App {
     }
     public route = router.currentRoute;
     public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
+
+    public logout() {
+        if (this.currentUser()) {
+            services.logout()
+                .then(data => {
+                    if (data.errCode == 1) {
+                        this.currentUser(null);
+                        document.title = '登录';
+                        hasher.setHash('login');
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.currentUser(null);
+                    document.title = '登录';
+                    hasher.setHash('login');
+                });
+        } else {
+            console.log('并没有登录，退出个毛啊');
+        }
+    }
 }
 
 var app = new App();
