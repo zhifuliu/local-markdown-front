@@ -31,6 +31,14 @@ class Services {
             dataType: 'json'
         }));
     }
+    getProjectList(): Q.Promise<Array<models.projectItem>> {
+        return Q($.ajax({
+            url: prefix + 'api/getProjectList',
+            type: 'post',
+            contentType: 'application/json',
+            dataType: 'json'
+        }));
+    }
     getJsonFile(url): Q.Promise<any> {
         return Q($.ajax({
             url: url,
