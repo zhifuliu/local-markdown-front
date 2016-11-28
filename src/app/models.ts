@@ -20,4 +20,14 @@ module models {
         url: string,
         lastUpdateTime: string
     }
+    export interface projectData {
+        errCode: number,
+        errMsg: string,
+        data?: Array<treeItem>
+    }
+    export interface treeItem {
+        path: string,
+        file?: string,
+        children: Array<treeItem>
+    }
 }
