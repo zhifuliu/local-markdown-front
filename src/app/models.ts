@@ -3,7 +3,8 @@ export = models;
 module models {
     export interface returnMsg {
         errCode: number,
-        err: any | UserMsg
+        errMsg: string,
+        data?: UserMsg
     }
 
     export interface UserMsg {
