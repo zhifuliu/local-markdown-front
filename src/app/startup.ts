@@ -17,10 +17,15 @@ ko.components.register('about-page', {
 });
 ko.components.register('login-page', { require: 'components/login-page/login' });
 ko.validation.init({
+    insertMessages: true,
     errorElementClass: 'has-error',
     errorMessageClass: 'help-block',
     decorateElement: true,
-    insertMessages: false
+    messagesOnModified: true,
+    grouping: {
+        deep: false,
+        observable: true
+    }
 });
 ko.validation.rules['EncodeMaxLength'] = {
     validator: (value, otherVal) => {
