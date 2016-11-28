@@ -1,5 +1,22 @@
-<h2>Home</h2>
-
-<p data-bind='text: message'></p>
-
-<button data-bind='click: doSomething'>Click me!</button>
+<div class="login-page">
+    <dl>
+        <dt>login</dt>
+        <dd data-bind="validationElement: user">
+            <label for="user"></label>
+            <input type="text" name="user" id="user" data-bind="textInput: user">
+            <!--<span class="help-block" data-bind="validationMessage: user"></span> -->
+        </dd>
+        <dd data-bind="validationElement: pass">
+            <label for="pass"></label>
+            <input type="text" name="pass" id="pass" data-bind="textInput: pass">
+            <!--<span class="help-block" data-bind="validationMessage: pass"></span> -->
+        </dd>
+        <dd>
+            <button type="button" name="button" data-bind="click: login">login</button>
+            <button type="button" name="button" data-bind="click: goToRegister">没有账号、立即注册</button>
+        </dd>
+        <dd>
+            <span data-bind="text: errMsg"></span>
+        </dd>
+    </dl>
+</div>
