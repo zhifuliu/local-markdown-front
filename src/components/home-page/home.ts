@@ -15,6 +15,14 @@ export class viewModel {
     public projectList: KnockoutObservableArray<models.projectItem> = ko.observableArray([]).syncWith('app:projectList', true, true);
     public currentProject: KnockoutObservable<models.projectItem> = ko.observable(null).syncWith('app:currentProject', true, true);
     public isEditing: KnockoutObservable<Boolean> = ko.observable(false);
+    public tempName: KnockoutObservable<string> = ko.observable('记事本所有文档工程').extend({
+        required: {message: '项目名不能为空'}
+    });
+    public tempUrl: KnockoutObservable<string> = ko.observable('/Users/zhifu/Documents/note/odds').extend({
+        required: {message: '项目本地地址不能为空'}
+    });
+    public validationErrors = (() => ko.validation.group(this))();
+    public addErrorMessage: KnockoutObservable<string> = ko.observable('');
 
     public refreshProject() {
         if (this.currentProject()) {
@@ -71,6 +79,26 @@ export class viewModel {
                         this.getProjectList();
                     })
             }
+        }
+    }
+    public addProject() {
+        if (this.validationErrors().length > 0) {
+            this.validationErrors.showAllMessages();
+        } else {
+            services.addProject({
+                name: this.tempName(),
+                url: this.tempUrl()
+            })
+                .then(data => {
+                    if (data.errCode == 1) {
+                        this.getProjectList();
+                    } else {
+                        this.addErrorMessage(data.errMsg);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
     }
 }

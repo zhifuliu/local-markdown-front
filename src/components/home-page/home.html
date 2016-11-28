@@ -21,14 +21,15 @@
         <dl>
             <dd>
                 <span>name:</span>
-                <input type="text" name="" value="">
+                <input type="text" data-bind="value: tempName">
             </dd>
             <dd>
                 <span>url:</span>
-                <input type="text" name="" value="">
+                <input type="text" data-bind="value: tempUrl">
             </dd>
             <dd>
-                <button type="button">添加</button>
+                <button type="button" data-bind="click: addProject">添加</button>
+                <span data-bind="text: addErrorMessage"></span>
             </dd>
         </dl>
     </div>
