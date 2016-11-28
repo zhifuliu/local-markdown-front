@@ -58,7 +58,7 @@ class App {
             })
             .catch(error => {
                 console.log(error);
-            })
+            });
     }
     public route = router.currentRoute;
     public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
