@@ -75,6 +75,16 @@ class App {
         this.currentUser.subscribe(val => {
             console.log("currentUser: " + JSON.stringify(val));
         });
+        setInterval(() => {
+            var notScanPages = ['login', 'register'];
+            if (notScanPages.indexOf(this.route()['page']) == -1) {
+                services.getUserMsg()
+                    .catch(error => {
+                        console.log(error);
+                        hasher.setHash('login');
+                    });
+            }
+        }, 3000);
     }
     public route = router.currentRoute;
     public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
