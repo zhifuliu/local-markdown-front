@@ -14,6 +14,7 @@ export class viewModel {
     }
     public projectList: KnockoutObservableArray<models.projectItem> = ko.observableArray([]).syncWith('app:projectList', true, true);
     public currentProject: KnockoutObservable<models.projectItem> = ko.observable(null).syncWith('app:currentProject', true, true);
+    public isEditing: KnockoutObservable<Boolean> = ko.observable(false);
 
     public refreshProject() {
         if (this.currentProject()) {
@@ -42,5 +43,11 @@ export class viewModel {
                     console.log(error);
                 });
         }
+    }
+    public editProjectList() {
+        this.isEditing(true);
+    }
+    public deleteProject(obj) {
+        console.log(obj);
     }
 }
