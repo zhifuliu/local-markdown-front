@@ -11,4 +11,13 @@ module models {
         user: string,
         nickname: string
     }
+
+    export interface projectList {
+        list: Array<projectItem>
+    }
+    export interface projectItem {
+        name: string,
+        url: string,
+        lastUpdateTime: string
+    }
 }
