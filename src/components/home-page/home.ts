@@ -1,6 +1,7 @@
 /// <amd-dependency path="text!./home.html" />
 
 import ko = require("knockout");
+import _ = require('underscore');
 import models = require('../../app/models');
 import services = require('../../services/services');
 
@@ -23,6 +24,8 @@ export class viewModel {
     });
     public validationErrors = (() => ko.validation.group(this))();
     public addErrorMessage: KnockoutObservable<string> = ko.observable('');
+    public projectData: KnockoutObservableArray<models.treeItem> = ko.observableArray([]);
+    public treeHtml: KnockoutObservable<string> = ko.observable('');
 
     public refreshProject() {
         if (this.currentProject()) {
@@ -46,6 +49,12 @@ export class viewModel {
             services.getProjectData(this.currentProject())
                 .then(data => {
                     console.log(data);
+                    if (data.errCode == 1) {
+                        this.projectData(data.data);
+                        this.treeHtml(this.generateTreeHtml(data.data));
+                    } else {
+                        console.log(data.errMsg);
+                    }
                 })
                 .catch(error => {
                     console.log(error);
@@ -100,5 +109,17 @@ export class viewModel {
                     console.log(error);
                 })
         }
+    }
+    public generateTreeHtml(items: Array<models.treeItem>) {
+        // console.log(this.projectData());
+        var temp = '';
+        _.each(items, item => {
+            if (item.children) {
+                temp += '<div class="dir"><div class="">' + (item.path && item.path.length != 0 ? item.path : '跟目录') + '</div>' + this.generateTreeHtml(item.children) + '</div>';
+            } else {
+                temp += '<span>' + item.file + '</span>'
+            }
+        })
+        return temp;
     }
 }
