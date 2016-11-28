@@ -21,3 +21,5 @@ test/**/*.js.map
 !test/require.config.js
 
 src/css/*.css
+app/
+components/
