@@ -62,7 +62,7 @@ class App {
         $('html').css('fontSize', (document.body.offsetWidth * 30 / 750) + 'px');
         services.getUserMsg()
             .then(data => {
-                // this.currentUser(data);
+                this.currentUser(data.data);
             })
             .catch(error => {
                 if (error.status == 401) {
@@ -72,6 +72,9 @@ class App {
                     console.log(error.responseText);
                 }
             });
+        this.currentUser.subscribe(val => {
+            console.log("currentUser: " + JSON.stringify(val));
+        });
     }
     public route = router.currentRoute;
     public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
