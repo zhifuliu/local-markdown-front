@@ -5,6 +5,8 @@
 import $ = require("jquery");
 import ko = require("knockout");
 import bootstrap = require("bootstrap");
+import hasher = require('hasher');
+
 import router = require("./router");
 import models = require('./models');
 import services = require('../services/services');
@@ -52,12 +54,18 @@ ko.validation.localize({
 
 class App {
     constructor() {
+        $('html').css('fontSize', (document.body.offsetWidth * 30 / 750) + 'px');
         services.getUserMsg()
             .then(data => {
-                console.log(data);
+                // this.currentUser(data);
             })
             .catch(error => {
-                console.log(error);
+                if (error.status == 401) {
+                    document.title = '登录';
+                    hasher.setHash('login');
+                } else {
+                    console.log(error.responseText);
+                }
             });
     }
     public route = router.currentRoute;
