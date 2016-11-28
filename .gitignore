@@ -18,6 +18,6 @@ test/**/*.js.map
 # ... except specific ones, which should be tracked
 !src/app/require.config.js
 !src/app/lib/*.js*
-!tset/require.config.js
+!test/require.config.js
 
 src/css/*.css
