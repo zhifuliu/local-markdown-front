@@ -44,10 +44,33 @@ export class viewModel {
                 });
         }
     }
+    public getProjectList() {
+        services.getProjectList()
+            .then(data => {
+                this.projectList(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
     public editProjectList() {
         this.isEditing(true);
     }
     public deleteProject(obj) {
         console.log(obj);
+        if (obj.name == '默认缓存') {
+            console.log('系统工程，不能删除，可以将临时markdown文件放在此处编辑');
+        } else {
+            if (confirm('是否删除工程：' + obj.name)) {
+                services.deleteProject(obj)
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.getProjectList();
+                    })
+            }
+        }
     }
 }
