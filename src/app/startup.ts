@@ -13,6 +13,7 @@ ko.components.register('home-page', { require: 'components/home-page/home' });
 ko.components.register('about-page', {
     template: { require: 'text!components/about-page/about.html' }
 });
+ko.components.register('login-page', { require: 'components/login-page/login' });
 ko.validation.init({
     errorElementClass: 'has-error',
     errorMessageClass: 'help-block',
@@ -51,7 +52,6 @@ ko.validation.localize({
 
 class App {
     constructor() {
-        console.log('cunstructor');
         services.getUserMsg()
             .then(data => {
                 console.log(data);

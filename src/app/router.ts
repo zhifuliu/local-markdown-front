@@ -18,6 +18,9 @@ module router {
         }, {
             url: 'about',
             params: { page: 'about-page' }
+        }, {
+            url: 'login',
+            params: { page: 'login-page' }
         }
     ];
 
