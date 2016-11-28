@@ -74,6 +74,15 @@ class App {
             });
         this.currentUser.subscribe(val => {
             console.log("currentUser: " + JSON.stringify(val));
+            if (val) {
+                services.getProjectList()
+                    .then(data => {
+                        this.projectList(data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
         });
         setInterval(() => {
             var notScanPages = ['login-page', 'register'];
@@ -90,6 +99,7 @@ class App {
     }
     public route = router.currentRoute;
     public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
+    public projectList: KnockoutObservableArray<models.projectItem> = ko.observableArray([]);
 
     public logout() {
         if (this.currentUser()) {
