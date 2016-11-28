@@ -99,7 +99,7 @@ class App {
     }
     public route = router.currentRoute;
     public currentUser: KnockoutObservable<models.UserMsg> = ko.observable(null).syncWith('app:currentUser', true, true);
-    public projectList: KnockoutObservableArray<models.projectItem> = ko.observableArray([]);
+    public projectList: KnockoutObservableArray<models.projectItem> = ko.observableArray([]).syncWith('app:projectList', true, true);
 
     public logout() {
         if (this.currentUser()) {

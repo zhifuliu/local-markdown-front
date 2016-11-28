@@ -1,5 +1,13 @@
-<h2>Home</h2>
-
-<p data-bind='text: message'></p>
-
-<button data-bind='click: doSomething'>Click me!</button>
+<div class="projectList">
+    <select class="projectSelect" data-bind="options: projectList,
+                                            optionsCaption: 'please select',
+                                            optionsText: function(d){return d.name;},
+                                            value: currentProject">
+    </select>
+    <div class="refreshIcon">
+        <span>刷新</span>
+    </div>
+</div>
+<div class="treeView">
+    
+</div>
