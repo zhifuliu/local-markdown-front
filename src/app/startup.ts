@@ -86,7 +86,6 @@ class App {
         });
         setInterval(() => {
             var notScanPages = ['login-page', 'register'];
-            // console.log(this.route()['page']);
             if (notScanPages.indexOf(this.route()['page']) == -1) {
                 services.getUserMsg()
                     .catch(error => {
