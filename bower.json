@@ -1,22 +1,25 @@
 {
-    "name": "yo-ko-ts-gulp",
-    "version": "0.0.0",
-    "private": true,
-    "dependencies": {
-        "components-bootstrap": "~3.1.1",
-        "crossroads": "~0.12.0",
-        "hasher": "~1.2.0",
-        "requirejs": "~2.1.11",
-        "requirejs-text": "~2.0.10",
-        "knockout": "~3.3.0-alpha",
-        "knockout-postbox": "~0.5.2",
-        "knockout-projections": "~1.1.0",
-        "q": "1.0.1",
-        "jquery": "1.11.2",
-        "underscore": "^1.8.3",
-        "knockout-validation": "~2.0.3"
-    },
-    "resolutions": {
-        "knockout": "~3.3.0-alpha"
-    }
+  "name": "yo-ko-ts-gulp",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "components-bootstrap": "~3.1.1",
+    "crossroads": "~0.12.0",
+    "hasher": "~1.2.0",
+    "requirejs": "~2.1.11",
+    "requirejs-text": "~2.0.10",
+    "knockout": "~3.3.0-alpha",
+    "knockout-postbox": "~0.5.2",
+    "knockout-projections": "~1.1.0",
+    "q": "1.0.1",
+    "jquery": "1.11.2",
+    "underscore": "^1.8.3",
+    "knockout-validation": "~2.0.3"
+  },
+  "resolutions": {
+    "knockout": "~3.3.0-alpha"
+  },
+  "devDependencies": {
+    "bootstrap-markdown": "^2.10.0"
+  }
 }
