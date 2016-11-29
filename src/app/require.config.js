@@ -16,7 +16,9 @@ var require = {
     "requirejs":            "bower_modules/requirejs/require",
     "q":                    "bower_modules/q/q",
     "knockout-postbox":     "bower_modules/knockout-postbox/build/knockout-postbox",
-    "underscore":           "bower_modules/underscore/underscore"
+    "underscore":           "bower_modules/underscore/underscore",
+    "bootstrap-markdown":   "bower_modules/bootstrap-markdown/js/bootstrap-markdown",
+    "bootstrap-markdown-zh":   "bower_modules/bootstrap-markdown/locale/bootstrap-markdown.zh"
   },
   shim: {
     "bootstrap": { deps: ["jquery"] }
