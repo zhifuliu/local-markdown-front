@@ -1,39 +1,46 @@
-<div class="projectList">
-    <select class="projectSelect" data-bind="options: projectList,
-                                            optionsCaption: 'please select',
-                                            optionsText: function(d){return d.name;},
-                                            value: currentProject">
-    </select>
-    <div class="refreshIcon">
-        <span data-bind="click: refreshProject">刷新</span>
-        <span data-bind="click: editProjectList">编辑</span>
-    </div>
-</div>
-<div class="projectListEdit" data-bind="visible: isEditing">
-    <div class="projectItems" data-bind="foreach: projectList">
-        <div class="projectItem">
-            <span data-bind="text: name"></span>
-            <button type="button" data-bind="click: $parent.deleteProject.bind($data)">删除</button>
+<div class="homePage">
+    <div class="left">
+        <div class="projectList">
+            <select class="projectSelect" data-bind="options: projectList,
+                                                    optionsCaption: 'please select',
+                                                    optionsText: function(d){return d.name;},
+                                                    value: currentProject">
+            </select>
+            <div class="refreshIcon">
+                <span data-bind="click: refreshProject">刷新</span>
+                <span data-bind="click: editProjectList">编辑</span>
+            </div>
+        </div>
+        <div class="projectListEdit" data-bind="visible: isEditing">
+            <div class="projectItems" data-bind="foreach: projectList">
+                <div class="projectItem">
+                    <span data-bind="text: name"></span>
+                    <button type="button" data-bind="click: $parent.deleteProject.bind($data)">删除</button>
+                </div>
+            </div>
+            <div class="addProject">
+                <span>添加一个工程：</span>
+                <dl>
+                    <dd>
+                        <span>name:</span>
+                        <input type="text" data-bind="value: tempName">
+                    </dd>
+                    <dd>
+                        <span>url:</span>
+                        <input type="text" data-bind="value: tempUrl">
+                    </dd>
+                    <dd data-bind="text: addErrorMessage" class="errorMessage"></dd>
+                    <dd>
+                        <button type="button" data-bind="click: addProject">添加</button>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="treeView" data-bind="html: treeHtml">
+
         </div>
     </div>
-    <span>添加一个工程：</span>
-    <div class="addProject">
-        <dl>
-            <dd>
-                <span>name:</span>
-                <input type="text" data-bind="value: tempName">
-            </dd>
-            <dd>
-                <span>url:</span>
-                <input type="text" data-bind="value: tempUrl">
-            </dd>
-            <dd>
-                <button type="button" data-bind="click: addProject">添加</button>
-                <span data-bind="text: addErrorMessage"></span>
-            </dd>
-        </dl>
-    </div>
-</div>
-<div class="treeView" data-bind="html: treeHtml">
+    <div class="right">
 
+    </div>
 </div>

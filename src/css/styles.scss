@@ -1,5 +1,5 @@
 #page {
-	margin-top: 80px;
+	// margin-top: 80px;
 }
 ul.nav.navbar-nav {
 	li {
@@ -10,18 +10,100 @@ ul.nav.navbar-nav {
 		}
 	}
 }
-.treeView {
-	padding: 1rem 0;
-	position: relative;
-	.dir {
+.errorMessage {
+	color: red;
+}
+.homePage {
+	font-size: 1rem;
+	width: 100%;
+	margin-top: 20%;
+	border: 1px #c2c2c2 solid;
+	.left {
+		width: 30%;
 		display: block;
-		padding: 0.3rem 0;
 		position: relative;
-		margin-left: 1rem;
-		border-bottom: 1px #c2c2c2 solid;
-	}
-	span {
-		display: block;
-		margin-left: 1rem;
+		overflow: scroll;
+		border: 1px #c2c2c2 solid;
+
+		.projectList {
+			border-bottom: 1px #c2c2c2 solid;
+			padding-bottom: 0.2rem;
+			margin-bottom: 0.2rem;
+			select {
+				width: 100%;
+				padding: 0.5rem 0;
+				margin: 0.2rem 0;
+			}
+			.refreshIcon {
+				width: 100%;
+				span {
+					width: 48%;
+					display: inline-block;
+					text-align: center;
+					border-radius: 0.2rem;
+					border: 1px #c2c2c2 solid;
+					padding: 0.1rem 0;
+					margin: 0 0.5%;
+				}
+			}
+		}
+		.projectListEdit {
+			margin-bottom: 1rem;
+			border-bottom: 1px #c2c2c2 solid;
+			display: block;
+			.projectItems {
+				width: 100%;
+				margin-top: 1rem;
+				border-bottom: 1px #c2c2c2 solid;
+				.projectItem {
+					width: 100%;
+					margin-bottom: 0.5rem;
+					span {
+						width: 60%;
+						width: calc(100% - 5rem);
+						display: inline-block;
+					}
+					button {
+						width: 4rem;
+						display: inline-block;
+					}
+				}
+			}
+			.addProject {
+				width: 100%;
+				margin-top: 1rem;
+				dl {
+					dd {
+						margin-bottom: 0.5rem;
+						span {
+							width: 3rem;
+							display: inline-block;
+						}
+						input {
+							width: calc(100% - 3.5rem);
+							display: inline-block;
+						}
+						button {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+		.treeView {
+			padding: 1rem 0;
+			position: relative;
+			.dir {
+				display: block;
+				padding: 0.3rem 0;
+				position: relative;
+				margin-left: 1rem;
+				border-bottom: 1px #c2c2c2 solid;
+			}
+			span {
+				display: block;
+				margin-left: 1rem;
+			}
+		}
 	}
 }
