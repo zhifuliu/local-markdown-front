@@ -18,7 +18,8 @@ module models {
     export interface projectItem {
         name: string,
         url: string,
-        lastUpdateTime: string
+        lastUpdateTime: string,
+        isGit: boolean
     }
     export interface projectData {
         errCode: number,
