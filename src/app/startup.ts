@@ -59,7 +59,7 @@ ko.validation.localize({
 
 class App {
     constructor() {
-        $('html').css('fontSize', (document.body.offsetWidth * 5 / 750) + 'px');
+        // $('html').css('fontSize', (document.body.offsetWidth * 5 / 750) + 'px');
         services.getUserMsg()
             .then(data => {
                 this.currentUser(data.data);
