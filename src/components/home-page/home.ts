@@ -54,6 +54,24 @@ export class viewModel {
                         console.log(data.data);
                         this.projectData(data.data);
                         this.treeHtml(this.generateTreeHtml(data.data));
+                        // $('.dirName').on('click', function() {
+                        //     console.log(this);
+                        //     console.log(event);
+                        // });
+                        $('.fileName').on('click', function() {
+                            // console.log(this);
+                            // console.log($(this));
+                            // console.log($(this)[0]);
+                            // console.log($(this)[0].text());
+                            // console.log($(this)[0]['file']);
+                            // console.log($(this)[0]['path']);
+
+                            var context = ko.contextFor(this);
+                            console.log(context);
+                            // console.log(context.$data);
+                            console.log(context.$element);
+                            // console.log(context.$data.isEditing());
+                        });
                     } else {
                         console.log(data.errMsg);
                     }
@@ -117,18 +135,18 @@ export class viewModel {
         var temp = '';
         _.each(items, item => {
             if (item.children) {
-                temp += '<div class="dir"><div class="">' + (item.path && item.path.length != 0 ? item.path : '跟目录') + '</div>' + this.generateTreeHtml(item.children) + '</div>';
+                temp += '<div class="dir"><div class="dirName">' + (item.path && item.path.length != 0 ? item.path : '跟目录') + '</div>' + this.generateTreeHtml(item.children) + '</div>';
             } else {
-                temp += '<span title="' + item.path + '/' + item.file + '">' + item.file + '</span>'
+                temp += '<span class="fileName" path="'+item.path+'" file="'+item.file+'">' + item.file + '</span>'
             }
         })
         return temp;
     }
-    public clickMdFile() {
-        // console.log(item);
-        console.log(event);
-        console.log(event.srcElement);
-        console.log(event.target);
-        console.log(typeof event.target);
-    }
+    // public clickMdFile() {
+    //     // console.log(item);
+    //     console.log(event);
+    //     console.log(event.srcElement);
+    //     console.log(event.target);
+    //     console.log(typeof event.target);
+    // }
 }
