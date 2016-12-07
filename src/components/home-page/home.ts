@@ -2,6 +2,7 @@
 
 import ko = require("knockout");
 import _ = require('underscore');
+import $ = require('jquery');
 import models = require('../../app/models');
 import services = require('../../services/services');
 
@@ -48,8 +49,9 @@ export class viewModel {
         if (this.currentProject()) {
             services.getProjectData(this.currentProject())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.errCode == 1) {
+                        console.log(data.data);
                         this.projectData(data.data);
                         this.treeHtml(this.generateTreeHtml(data.data));
                     } else {
@@ -117,9 +119,16 @@ export class viewModel {
             if (item.children) {
                 temp += '<div class="dir"><div class="">' + (item.path && item.path.length != 0 ? item.path : '跟目录') + '</div>' + this.generateTreeHtml(item.children) + '</div>';
             } else {
-                temp += '<span>' + item.file + '</span>'
+                temp += '<span title="' + item.path + '/' + item.file + '">' + item.file + '</span>'
             }
         })
         return temp;
+    }
+    public clickMdFile() {
+        // console.log(item);
+        console.log(event);
+        console.log(event.srcElement);
+        console.log(event.target);
+        console.log(typeof event.target);
     }
 }
