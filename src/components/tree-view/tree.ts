@@ -13,25 +13,23 @@ export interface treeItemObservable {
     path?: KnockoutObservable<string>,
     file?: KnockoutObservable<string>,
     children?: KnockoutObservableArray<treeItemObservable>,
-    opened?: KnockoutObservable<boolean>
+    opened?: KnockoutObservable<boolean>,
+    checked?: KnockoutObservable<boolean>
 }
 
 export class TreeView {
     constructor(params: {
         treeData: Array<treeItem>
     }) {
-        this.treeData = params.treeData;
         this.treeDataObservable(this.changeData(params.treeData)());
     }
     public treeDataObservable: KnockoutObservableArray<treeItemObservable> = ko.observableArray([]);
-    public treeData: Array<treeItem> = [];
 
     public clickItem = () => {
         console.log('zhifu');
     }
 
     private changeData(dataObject: Array<treeItem>): KnockoutObservableArray<treeItemObservable> {
-        // console.log(dataObject);
         var temp: KnockoutObservable<treeItemObservable> = ko.observable({});
         var list: KnockoutObservableArray<treeItemObservable> = ko.observableArray([]);
         _.each(dataObject, item => {
@@ -50,6 +48,8 @@ export class TreeView {
             } else {
                 delete temp()['children'];
             }
+            temp()['opened'] = ko.observable(false);
+            temp()['checked'] = ko.observable(true);
             list.push(_.clone(temp()));
         });
         return list;
