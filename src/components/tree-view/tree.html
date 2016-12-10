@@ -1,9 +1,7 @@
 <script id="nodeTemplate" type="text/html">
-    <li>
-        <!--<span data-bind="text: 'opened:' + opened()"></span>
-        <span data-bind="text: 'checked:' + checked()"></span> -->
+    <li data-bind="css: {opened: opened()}">
         <!-- ko if: $data['path'] != undefined && $data['children'] != undefined -->
-            <span data-bind="text: path"></span>
+            <span data-bind="text: path, click: function() {opened(!opened())}"></span>
         <!-- /ko -->
 
         <!-- ko if: $data['file'] != undefined && $data['children'] == undefined -->
