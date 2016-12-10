@@ -14,6 +14,23 @@ export class viewModel {
         this.currentProject.subscribe(val => {
             this.getProjectData();
         });
+        ko.postbox.subscribe('currentMdFile', (val: models.treeItemObservable) => {
+            this.currentMdFile(val);
+            services.getMdFile({
+                mdPath: val.path(),
+                mdFileName: val.file(),
+                projectName: this.currentProject().name,
+                projectUrl: this.currentProject().url,
+            })
+                .then(data => {
+                    if (data.errCode == 1) {
+                        this.currentMdFileData(data.data);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        });
     }
     public projectList: KnockoutObservableArray<models.projectItem> = ko.observableArray([]).syncWith('app:projectList', true, true);
     public currentProject: KnockoutObservable<models.projectItem> = ko.observable(null).syncWith('app:currentProject', true, true);
@@ -27,6 +44,8 @@ export class viewModel {
     public validationErrors = (() => ko.validation.group(this))();
     public addErrorMessage: KnockoutObservable<string> = ko.observable('');
     public projectData: KnockoutObservableArray<models.treeItem> = ko.observableArray([]);
+    public currentMdFileData: KnockoutObservable<string> = ko.observable('');
+    public currentMdFile: KnockoutObservable<models.treeItemObservable> = ko.observable(null);
 
     public refreshProject() {
         if (this.currentProject()) {
