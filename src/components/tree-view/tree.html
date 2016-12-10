@@ -1,7 +1,16 @@
 <script id="nodeTemplate" type="text/html">
     <li>
-        <!--<span data-bind="text: path"></span> -->
-        <!--<ul data-bind="template: {name: 'nodeTemplate', foreach: children}"></ul> -->
+        <!-- ko if: $data['path'] != undefined && $data['children'] != undefined -->
+            <span data-bind="text: path"></span>
+        <!-- /ko -->
+
+        <!-- ko if: $data['file'] != undefined && $data['children'] == undefined -->
+            <span data-bind="text: file, click: $parent.clickItem"></span>
+        <!-- /ko -->
+
+        <!-- ko if: $data['children'] != undefined -->
+            <ul data-bind="template: {name: 'nodeTemplate', foreach: children}"></ul>
+        <!-- /ko -->
     </li>
 </script>
 <ul data-bind="template: {name: 'nodeTemplate', foreach: treeData}"></ul>

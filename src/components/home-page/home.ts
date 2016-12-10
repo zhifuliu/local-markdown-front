@@ -111,4 +111,7 @@ export class viewModel {
                 })
         }
     }
+    public clickItem = item => {
+        console.log(item);
+    }
 }
