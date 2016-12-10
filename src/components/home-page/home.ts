@@ -13,25 +13,6 @@ export class viewModel {
         this.currentProject.subscribe(val => {
             this.getProjectData();
         });
-        $('.dirName').on('click', function() {
-            console.log(this);
-            console.log(event);
-        });
-        $('.fileName').on('click', function() {
-            var context = ko.contextFor(this);
-            console.log(context);
-            // console.log(context.$data);
-            console.log(context.$element);
-            // console.log(context.$data.isEditing());
-        });
-        this.projectDataObservable.subscribe(val => {
-            // console.log(val);
-            // _.each(val, item => {
-            //     console.log(item.path());
-            //     console.log(item.file());
-            //     console.log(item.children);
-            // })
-        });
     }
     public projectList: KnockoutObservableArray<models.projectItem> = ko.observableArray([]).syncWith('app:projectList', true, true);
     public currentProject: KnockoutObservable<models.projectItem> = ko.observable(null).syncWith('app:currentProject', true, true);
@@ -45,7 +26,6 @@ export class viewModel {
     public validationErrors = (() => ko.validation.group(this))();
     public addErrorMessage: KnockoutObservable<string> = ko.observable('');
     public projectData: KnockoutObservableArray<models.treeItem> = ko.observableArray([]);
-    public projectDataObservable: KnockoutObservableArray<models.treeItemObservable> = ko.observableArray([]);
 
     public refreshProject() {
         if (this.currentProject()) {
@@ -71,7 +51,6 @@ export class viewModel {
                 .then(data => {
                     if (data.errCode == 1) {
                         that.projectData(data.data);
-                        that.projectDataObservable(that.changeProjectData(data.data));
                     } else {
                         console.log(data.errMsg);
                     }
@@ -81,50 +60,7 @@ export class viewModel {
                 });
         }
     }
-    private changeProjectData(list: Array<models.treeItem>): Array<models.treeItemObservable> {
-        var that = this;
-        var tempObservableList: Array<models.treeItemObservable> = [];
-        var temp: models.treeItemObservable = {};
-        _.each(list, item => {
-            // console.log(item);
-            if (item.path) {
-                temp.path = ko.observable(item.path);
-            }
-            if (item.file) {
-                temp.file = ko.observable(item.file);
-            }
-            if (item.children) {
-                temp.children = that.changeProjectData(item.children);
-            }
-            console.log(temp.path() ? temp.path() : '');
-            console.log(temp.file ? temp.file : '');
-            console.log(temp.children ? temp.children : '');
-            tempObservableList.push(temp);
-        });
-        return tempObservableList;
-    }
-    private changeProjectData1(list: Array<models.treeItem>): Array<models.treeItemObservable> {
-        var that = this;
-        var tempObservableList: Array<models.treeItemObservable> = [];
-        var temp: models.treeItemObservable = {};
-        _.each(list, item => {
-            // console.log(item);
-            if (item.path) {
-                temp.path = ko.observable(item.path);
-            }
-            if (item.file) {
-                temp.file = ko.observable(item.file);
-            }
-            if (item.children) {
-                temp.children = that.changeProjectData(item.children);
-            }
-            console.log(temp.path() ? temp.path() : '');
-            console.log(temp.file ? temp.file : '');
-            console.log(temp.children ? temp.children : '');
-            tempObservableList.push(temp);
-        });
-        return tempObservableList;
-    }
+
     public getProjectList() {
         services.getProjectList()
             .then(data => {
