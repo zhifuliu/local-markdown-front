@@ -2,6 +2,8 @@
 
 import ko = require("knockout");
 import _ = require('underscore');
+import services = require('../../services/services');
+import models = require('../../app/models');
 export var template: string = require('text!./tree.html');
 
 export interface treeItem {
@@ -19,18 +21,35 @@ export interface treeItemObservable {
 
 export class TreeView {
     constructor(params: {
-        treeData: Array<treeItem>
+        treeData: Array<treeItem>,
+        currentProject: models.projectItem
     }) {
         this.treeDataObservable(this.changeData(params.treeData)());
+        this.currentProject(params.currentProject);
 
         this.currentMdFile.subscribe(val => {
-            // console.log(val);
-            // console.log(val.path());
-            // console.log(val.file());
+            services.getMdFile({
+                mdPath: val.path(),
+                mdFileName: val.file(),
+                projectName: this.currentProject().name,
+                projectUrl: this.currentProject().url,
+            })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         })
     }
     public treeDataObservable: KnockoutObservableArray<treeItemObservable> = ko.observableArray([]);
     public currentMdFile: KnockoutObservable<treeItemObservable> = ko.observable(null);
+    public currentProject: KnockoutObservable<models.projectItem> = ko.observable({
+        name: '',
+        url: '',
+        lastUpdateTime: '',
+        isGit: false
+    });
 
     public clickItem = (item) => {
         if (this.currentMdFile()) {
