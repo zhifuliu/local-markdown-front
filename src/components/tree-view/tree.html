@@ -1,6 +1,7 @@
 <script id="nodeTemplate" type="text/html">
     <li data-bind="css: {opened: opened()}">
         <!-- ko if: $data['path'] != undefined && $data['children'] != undefined -->
+            <span data-bind="text: opened() ? '-' : '+', click: function() {opened(!opened())}"></span>
             <span data-bind="text: path, click: function() {opened(!opened())}"></span>
         <!-- /ko -->
 
