@@ -35,12 +35,16 @@ export class TreeView {
                 projectUrl: this.currentProject().url,
             })
                 .then(data => {
-                    console.log(data);
+                    if (data.errCode == 1) {
+                        this.currentMdFileData(data.data);
+                    }
                 })
                 .catch(error => {
                     console.log(error);
                 })
-        })
+        });
+
+        // this.currentMdFileData.subscribe(val => console.log(val));
     }
     public treeDataObservable: KnockoutObservableArray<treeItemObservable> = ko.observableArray([]);
     public currentMdFile: KnockoutObservable<treeItemObservable> = ko.observable(null);
@@ -50,6 +54,7 @@ export class TreeView {
         lastUpdateTime: '',
         isGit: false
     });
+    public currentMdFileData: KnockoutObservable<string> = ko.observable('');
 
     public clickItem = (item) => {
         if (this.currentMdFile()) {
