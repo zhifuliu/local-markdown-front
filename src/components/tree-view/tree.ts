@@ -22,11 +22,29 @@ export class TreeView {
         treeData: Array<treeItem>
     }) {
         this.treeDataObservable(this.changeData(params.treeData)());
+
+        this.currentMdFile.subscribe(val => {
+            // console.log(val);
+            // console.log(val.path());
+            // console.log(val.file());
+        })
     }
     public treeDataObservable: KnockoutObservableArray<treeItemObservable> = ko.observableArray([]);
+    public currentMdFile: KnockoutObservable<treeItemObservable> = ko.observable(null);
 
-    public clickItem = () => {
-        console.log('zhifu');
+    public clickItem = (item) => {
+        if (this.currentMdFile()) {
+            if (this.currentMdFile() != item) {
+                if (confirm('目前正在修改“'+this.currentMdFile().path() + this.currentMdFile().file() + '”，是否取消，并修改“'+item.path() + item.file() + '”')) {
+                    this.currentMdFile().checked(false);
+                    this.currentMdFile(item);
+                    this.currentMdFile().checked(true);
+                }
+            }
+        } else {
+            this.currentMdFile(item);
+            this.currentMdFile().checked(true);
+        }
     }
 
     private changeData(dataObject: Array<treeItem>): KnockoutObservableArray<treeItemObservable> {

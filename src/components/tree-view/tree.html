@@ -6,7 +6,7 @@
         <!-- /ko -->
 
         <!-- ko if: $data['file'] != undefined && $data['children'] == undefined -->
-            <span data-bind="text: file, click: function() {checked(!checked())}, style: {backgroundColor: checked() ? '#c2c2c2' : '#fff'}"></span>
+            <span data-bind="text: file, click: $component.clickItem.bind($data), style: {backgroundColor: checked() ? '#c2c2c2' : '#fff'}"></span>
         <!-- /ko -->
 
         <!-- ko if: $data['children'] != undefined -->
