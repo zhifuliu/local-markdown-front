@@ -15,10 +15,11 @@
         <!-- endbuild -->
         <script id="personTmpl" type="text/html">
             <li>
-                <span data-bind="text: (children && children.length > 0) ? path : file" class="name"></span>
+                <span data-bind="$data"></span>
+                <!-- <span data-bind="text: (children && children.length > 0) ? path : file" class="name"></span>
                 <span data-bind="text: children && children.length > 0" class="name"></span>
-                <span data-bind="text: children" class="name"></span>
-                <ul data-bind="if: (children && children.length > 0), template: {name: 'personTmpl', foreach: children}"></ul>
+                <span data-bind="text: children" class="name"></span> -->
+                <!-- <ul data-bind="if: (children && children.length > 0), template: {name: 'personTmpl', foreach: children}"></ul> -->
             </li>
         </script>
     </head>

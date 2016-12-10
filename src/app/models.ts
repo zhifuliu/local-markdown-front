@@ -29,6 +29,11 @@ module models {
     export interface treeItem {
         path: string,
         file?: string,
-        children: Array<treeItem>
+        children?: Array<treeItem>
+    }
+    export interface treeItemObservable {
+        path?: KnockoutObservable<string>,
+        file?: KnockoutObservable<string>,
+        children?: Array<treeItemObservable>
     }
 }
