@@ -110,11 +110,11 @@ ul.nav.navbar-nav {
 
 li {
 	ul {
-		display: block;
+		display: none;
 	}
 }
 li.opened {
 	ul {
-		display: none;
+		display: block;
 	}
 }

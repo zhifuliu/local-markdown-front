@@ -49,7 +49,7 @@ export class TreeView {
                 delete temp()['children'];
             }
             temp()['opened'] = ko.observable(false);
-            temp()['checked'] = ko.observable(true);
+            temp()['checked'] = ko.observable(false);
             list.push(_.clone(temp()));
         });
         return list;
