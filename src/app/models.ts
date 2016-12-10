@@ -34,6 +34,8 @@ module models {
     export interface treeItemObservable {
         path?: KnockoutObservable<string>,
         file?: KnockoutObservable<string>,
-        children?: Array<treeItemObservable>
+        children?: KnockoutObservableArray<treeItemObservable>,
+        opened?: KnockoutObservable<boolean>,
+        checked?: KnockoutObservable<boolean>
     }
 }
