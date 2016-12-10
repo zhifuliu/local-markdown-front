@@ -1,1 +1,7 @@
-<h1>zhifu</h1>
+<script id="nodeTemplate" type="text/html">
+    <li>
+        <!--<span data-bind="text: path"></span> -->
+        <!--<ul data-bind="template: {name: 'nodeTemplate', foreach: children}"></ul> -->
+    </li>
+</script>
+<ul data-bind="template: {name: 'nodeTemplate', foreach: treeData}"></ul>

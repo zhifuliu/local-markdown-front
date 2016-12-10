@@ -5,6 +5,7 @@ import _ = require('underscore');
 import $ = require('jquery');
 import models = require('../../app/models');
 import services = require('../../services/services');
+import tree = require('../tree-view/tree');
 
 export var template: string = require("text!./home.html");
 

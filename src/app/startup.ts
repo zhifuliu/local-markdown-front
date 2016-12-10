@@ -1,6 +1,7 @@
 /// <amd-dependency path="bootstrap" />
 /// <amd-dependency path="knockout-postbox" />
 /// <amd-dependency path="knockout-validation" />
+/// <amd-dependency path="components/tree-view/tree" />
 
 import $ = require("jquery");
 import ko = require("knockout");
