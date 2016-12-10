@@ -97,6 +97,17 @@ class Services {
             url: url + '?t=' + (new Date().getTime())
         }));
     }
+    getMdFile(qd: any): Q.Promise<any> {
+        return Q(
+            $.ajax({
+                url: prefix + 'api/getMdData',
+                type: 'post',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(qd)
+            })
+        );
+    }
 }
 
 export = new Services();
